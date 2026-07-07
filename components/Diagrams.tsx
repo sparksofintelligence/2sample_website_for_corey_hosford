@@ -22,7 +22,7 @@ function CoiloverDiagram({ compact }: { compact: boolean }) {
       className={compact ? "h-44 w-full" : "h-full min-h-[360px] w-full"}
       fill="none"
     >
-      <g opacity="0.55" stroke="currentColor" strokeWidth="1">
+      <g opacity="0.7" stroke="var(--steel)" strokeWidth="1">
         <rect x="48" y="28" width="264" height="464" />
         <path d="M64 74 H296" />
         <path d="M64 442 H296" />
@@ -72,7 +72,7 @@ function CoiloverDiagram({ compact }: { compact: boolean }) {
         <path d="M127 279 C145 260 215 260 233 279 C215 298 145 298 127 279 Z" />
       </g>
 
-      <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
+      <g stroke="var(--steel)" strokeWidth="1.2" strokeLinecap="round">
         <path d="M236 135 H303" />
         <path d="M226 236 H303" />
         <path d="M222 321 H303" />
@@ -104,7 +104,7 @@ function BrakeDiagram({ compact }: { compact: boolean }) {
       className={compact ? "h-44 w-full" : "h-full min-h-[360px] w-full"}
       fill="none"
     >
-      <g opacity="0.55" stroke="currentColor" strokeWidth="1">
+      <g opacity="0.7" stroke="var(--steel)" strokeWidth="1">
         <rect x="44" y="28" width="272" height="464" />
         <path d="M62 82 H298" />
         <path d="M62 438 H298" />
@@ -141,7 +141,7 @@ function BrakeDiagram({ compact }: { compact: boolean }) {
         <path d="M291 329 L269 340" />
       </g>
 
-      <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
+      <g stroke="var(--steel)" strokeWidth="1.2" strokeLinecap="round">
         <path d="M271 172 H326" />
         <path d="M232 260 H326" />
         <path d="M216 351 H326" />

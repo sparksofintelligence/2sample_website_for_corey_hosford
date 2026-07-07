@@ -6,7 +6,7 @@ export const brandConfig: BrandConfig = {
   tagline: "SUSPENSION, SPECIFIED.",
   subline:
     "An independent coilover and suspension specialist. Matched to your chassis, documented like it matters.",
-  accentColor: "#1F3BFF",
+  accentColor: "#E09832",
   categoryLabel: "Coilover systems",
   utilityBarText: {
     left: "Independent specialist. Ships from Mesa, AZ.",

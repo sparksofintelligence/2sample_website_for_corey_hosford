@@ -279,7 +279,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
           type="button"
           data-testid={`notify-open-${product.sku}`}
           onClick={() => setNotifyState(product.sku, { open: true })}
-          className="w-full border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-paper transition-colors hover:bg-ink"
+          className="w-full border border-[var(--accent)] bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-paper transition-colors hover:bg-surface hover:text-[var(--accent)]"
         >
           Notify me
         </button>
@@ -305,12 +305,12 @@ export default function Storefront({ brand, products }: StorefrontProps) {
                   error: undefined,
                 })
               }
-              className="min-h-11 border border-rule bg-paper px-3 font-mono text-sm text-ink placeholder:text-muted"
+              className="min-h-11 border border-rule bg-surface px-3 font-mono text-sm text-ink placeholder:text-muted"
             />
             <button
               type="submit"
               data-testid={`notify-submit-${product.sku}`}
-              className="min-h-11 border border-ink px-4 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="min-h-11 border border-rule px-4 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               Submit
             </button>
@@ -350,7 +350,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#catalog"
-                className="border border-[var(--accent)] bg-[var(--accent)] px-5 py-3 text-center text-sm font-semibold text-paper transition-colors hover:bg-ink"
+                className="border border-[var(--accent)] bg-[var(--accent)] px-5 py-3 text-center text-sm font-semibold text-paper transition-colors hover:bg-surface hover:text-[var(--accent)]"
               >
                 Browse catalog
               </a>
@@ -362,13 +362,13 @@ export default function Storefront({ brand, products }: StorefrontProps) {
               </a>
             </div>
           </div>
-          <div className="technical-panel border border-rule bg-paper px-3 py-5 text-ink sm:px-6">
+          <div className="technical-panel border border-rule px-3 py-5 text-ink sm:px-6">
             <Diagram diagramKey={brand.diagramKey} />
             <SpecPlate diagramKey={brand.diagramKey} />
           </div>
         </div>
-        <div className="border-y border-rule">
-          <div className="mx-auto max-w-7xl px-4 py-4 font-mono text-xs uppercase tracking-[0.18em] text-muted sm:px-6 lg:px-8">
+        <div className="border-y border-[var(--accent)] bg-[var(--accent)]">
+          <div className="mx-auto max-w-7xl px-4 py-4 font-mono text-xs uppercase tracking-[0.18em] text-paper sm:px-6 lg:px-8">
             {brand.specTicker}
           </div>
         </div>
@@ -401,7 +401,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
                   data-testid="chassis-select"
                   value={chassis}
                   onChange={(event) => setChassis(event.target.value)}
-                  className="h-12 border border-rule bg-paper px-3 font-mono text-sm text-ink"
+                  className="h-12 border border-rule bg-surface px-3 font-mono text-sm text-ink"
                 >
                   {chassisOptions.map((option) => (
                     <option key={option} value={option}>
@@ -425,7 +425,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
                       className={`min-h-12 border-rule px-3 font-mono text-xs uppercase tracking-[0.08em] transition-colors sm:border-r sm:last:border-r-0 ${
                         useFilter === filter
                           ? "bg-[var(--accent)] text-paper"
-                          : "bg-paper text-ink hover:text-[var(--accent)]"
+                          : "bg-surface text-ink hover:text-[var(--accent)]"
                       }`}
                     >
                       {filter}
@@ -444,7 +444,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
                   onChange={(event) =>
                     setAvailability(event.target.value as AvailabilityFilter)
                   }
-                  className="h-12 border border-rule bg-paper px-3 font-mono text-sm text-ink"
+                  className="h-12 border border-rule bg-surface px-3 font-mono text-sm text-ink"
                 >
                   {availabilityFilters.map((option) => (
                     <option key={option} value={option}>
@@ -462,7 +462,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
                   data-testid="sort-select"
                   value={sortMode}
                   onChange={(event) => setSortMode(event.target.value as SortMode)}
-                  className="h-12 border border-rule bg-paper px-3 font-mono text-sm text-ink"
+                  className="h-12 border border-rule bg-surface px-3 font-mono text-sm text-ink"
                 >
                   <option value="featured">Catalog order</option>
                   <option value="price-asc">Price low</option>
@@ -537,7 +537,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
           <SectionHeading number="02" label="Fitment" detail="Specified before dispatch" />
           <div className="mt-8 grid gap-px bg-rule md:grid-cols-3">
             {brand.fitmentSteps.map((step, index) => (
-              <div key={step} className="technical-cell bg-paper p-6">
+              <div key={step} className="technical-cell p-6">
                 <div className="flex items-start justify-between gap-4">
                   <p className="mini-stamp font-mono text-xs text-[var(--accent)]">
                     {String(index + 1).padStart(2, "0")}
@@ -626,7 +626,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className="border border-ink bg-paper px-4 py-3 font-mono text-xs uppercase tracking-[0.08em]"
+            className="border border-rule bg-surface px-4 py-3 font-mono text-xs uppercase tracking-[0.08em]"
           >
             {toast.message}
           </div>
@@ -659,11 +659,11 @@ function Header({
   onCartOpen: () => void;
 }) {
   return (
-    <header className="border-b border-rule bg-paper">
+    <header className="border-b border-rule bg-surface">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <a
           href="#top"
-          className="border border-ink px-4 py-3 transition-colors hover:border-[var(--accent)]"
+          className="border border-rule px-4 py-3 transition-colors hover:border-[var(--accent)]"
           aria-label={`${brand.name} home`}
         >
           <span className="block font-display text-2xl font-bold uppercase leading-none tracking-normal">
@@ -736,7 +736,7 @@ function SpecPlate({ diagramKey }: { diagramKey: BrandConfig["diagramKey"] }) {
       : "PL-CS SERIES / MONOTUBE / 6K-14K";
 
   return (
-    <div className="data-plate relative mt-4 border border-ink px-4 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
+    <div className="data-plate relative mt-4 border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.16em]">
       <span className="plate-rivet left-2 top-2" aria-hidden="true" />
       <span className="plate-rivet right-2 top-2" aria-hidden="true" />
       <span className="plate-rivet bottom-2 left-2" aria-hidden="true" />
@@ -831,7 +831,7 @@ function ProductGrid({
         <article
           key={product.sku}
           data-testid={`product-card-${product.sku}`}
-          className="interactive-card flex min-h-[560px] flex-col border border-rule bg-paper"
+          className="interactive-card flex min-h-[560px] flex-col border border-rule"
         >
           <button
             type="button"
@@ -886,7 +886,7 @@ function ProductGrid({
                   type="button"
                   data-testid={`add-${product.sku}`}
                   onClick={() => onAdd(product)}
-                  className="w-full border border-ink px-4 py-3 text-sm font-semibold transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  className="w-full border border-rule px-4 py-3 text-sm font-semibold transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
                 >
                   Add
                 </button>
@@ -918,7 +918,7 @@ function ProductTable({
 
   return (
     <div className="mt-8 overflow-x-auto border border-rule">
-      <table className="min-w-[960px] w-full border-collapse bg-paper text-left">
+      <table className="min-w-[960px] w-full border-collapse bg-surface text-left">
         <thead>
           <tr className="border-b border-rule font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
             <th className="px-4 py-4 font-medium">SKU</th>
@@ -973,7 +973,7 @@ function ProductTable({
                     type="button"
                     data-testid={`table-add-${product.sku}`}
                     onClick={() => onAdd(product)}
-                    className="w-full border border-ink px-4 py-3 text-sm font-semibold transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                    className="w-full border border-rule px-4 py-3 text-sm font-semibold transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
                   >
                     Add
                   </button>
@@ -998,7 +998,7 @@ function AvailabilityTag({ product }: { product: Product }) {
 
   if (product.stockStatus === "Built to Order") {
     return (
-      <span className="inline-flex border border-ink px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em]">
+      <span className="inline-flex border border-[var(--accent)] px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--accent)]">
         Built to Order
       </span>
     );
@@ -1045,7 +1045,7 @@ function ProductModal({
         aria-modal="true"
         aria-labelledby="product-modal-title"
         data-testid="product-modal"
-        className="mx-auto grid max-h-[calc(100vh-40px)] max-w-5xl overflow-y-auto border border-ink bg-paper lg:grid-cols-[0.9fr_1.1fr]"
+        className="mx-auto grid max-h-[calc(100vh-40px)] max-w-5xl overflow-y-auto border border-rule bg-surface lg:grid-cols-[0.9fr_1.1fr]"
       >
         <div className="technical-panel border-b border-rule p-5 lg:border-b-0 lg:border-r">
           <Diagram diagramKey={brand.diagramKey} />
@@ -1135,7 +1135,7 @@ function ProductModal({
                   type="button"
                   data-testid="modal-add"
                   onClick={onAdd}
-                  className="border border-[var(--accent)] bg-[var(--accent)] px-5 py-3 font-semibold text-paper transition-colors hover:bg-ink"
+                  className="border border-[var(--accent)] bg-[var(--accent)] px-5 py-3 font-semibold text-paper transition-colors hover:bg-surface hover:text-[var(--accent)]"
                 >
                   Add
                 </button>
@@ -1178,7 +1178,7 @@ function CartDrawer({
       />
       <aside
         data-testid="cart-drawer"
-        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-ink bg-paper transition-transform duration-200 ${
+        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-rule bg-surface transition-transform duration-200 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         aria-label="Cart"
@@ -1276,16 +1276,16 @@ function Footer({
   };
 
   return (
-    <footer className="bg-ink text-paper">
+    <footer className="bg-footer text-ink">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1fr_auto_auto] lg:px-8">
         <div>
           <p className="font-display text-5xl uppercase leading-none">{brand.name}</p>
-          <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-paper/70">
+          <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-muted">
             {brand.lockupLine}
           </p>
         </div>
         <div>
-          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-paper/70">
+          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
             Useful Links
           </h2>
           <ul className="mt-4 grid gap-3">
@@ -1295,14 +1295,14 @@ function Footer({
                   <button
                     type="button"
                     onClick={onCartOpen}
-                    className="underline decoration-transparent underline-offset-4 transition-colors hover:text-paper/70 hover:decoration-paper/70"
+                    className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--accent)] hover:decoration-[var(--accent)]"
                   >
                     {link}
                   </button>
                 ) : (
                   <a
                     href={linkTargets[link] ?? "#"}
-                    className="underline decoration-transparent underline-offset-4 transition-colors hover:text-paper/70 hover:decoration-paper/70"
+                    className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--accent)] hover:decoration-[var(--accent)]"
                   >
                     {link}
                   </a>
@@ -1312,14 +1312,14 @@ function Footer({
           </ul>
         </div>
         <address className="not-italic">
-          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-paper/70">
+          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
             Mesa AZ
           </h2>
-          <p className="mt-4 max-w-56 leading-7 text-paper/80">{brand.footer.address}</p>
-          <p className="mt-3 font-mono text-sm text-paper/80">{brand.footer.phone}</p>
-          <p className="mt-1 font-mono text-sm text-paper/80">{brand.footer.email}</p>
+          <p className="mt-4 max-w-56 leading-7 text-muted">{brand.footer.address}</p>
+          <p className="mt-3 font-mono text-sm text-muted">{brand.footer.phone}</p>
+          <p className="mt-1 font-mono text-sm text-muted">{brand.footer.email}</p>
         </address>
-        <p className="border-t border-paper/20 pt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-paper/60 md:col-span-3">
+        <p className="border-t border-rule pt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:col-span-3">
           {brand.footer.smallPrint}
         </p>
       </div>

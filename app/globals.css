@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --paper: #f6f4ef;
-  --ink: #121212;
-  --muted: #6b6963;
-  --rule: #e3dfd5;
-  --accent: #1f3bff;
+  --bg: #14161a;
+  --surface: #1c1f24;
+  --border: #2e3238;
+  --text: #edeae4;
+  --muted: #9a968e;
+  --accent: #e09832;
+  --steel: #6e7681;
+  --footer: #0d0e10;
+  --paper: var(--bg);
+  --ink: var(--text);
+  --rule: var(--border);
 }
 
 * {
@@ -20,18 +26,22 @@ html {
 
 body {
   min-height: 100vh;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
 }
 
 .catalog-sheet {
-  background-color: var(--paper);
+  background-color: var(--bg);
   background-image:
-    linear-gradient(rgba(18, 18, 18, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 18, 18, 0.035) 1px, transparent 1px),
-    linear-gradient(rgba(18, 18, 18, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 18, 18, 0.018) 1px, transparent 1px);
-  background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
+    repeating-linear-gradient(
+      115deg,
+      rgba(237, 234, 228, 0.035) 0,
+      rgba(237, 234, 228, 0.035) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    linear-gradient(180deg, rgba(110, 118, 129, 0.08), transparent 38%);
+  background-size: 24px 24px, 100% 100%;
 }
 
 .engineering-section {
@@ -48,12 +58,12 @@ body {
   content: "";
   background-image: repeating-linear-gradient(
     135deg,
-    rgba(18, 18, 18, 0.12) 0,
-    rgba(18, 18, 18, 0.12) 1px,
+    rgba(110, 118, 129, 0.45) 0,
+    rgba(110, 118, 129, 0.45) 1px,
     transparent 1px,
     transparent 7px
   );
-  opacity: 0.5;
+  opacity: 0.65;
 }
 
 .engineering-rule {
@@ -69,21 +79,30 @@ body {
   content: "";
   background-image: repeating-linear-gradient(
     90deg,
-    var(--ink) 0,
-    var(--ink) 10px,
+    var(--steel) 0,
+    var(--steel) 10px,
     transparent 10px,
     transparent 18px
   );
-  opacity: 0.22;
+  opacity: 0.45;
 }
 
 .technical-panel,
 .technical-cell {
-  background-color: var(--paper);
+  background-color: var(--surface);
   background-image:
-    linear-gradient(rgba(18, 18, 18, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 18, 18, 0.03) 1px, transparent 1px);
-  background-size: 18px 18px;
+    repeating-linear-gradient(
+      115deg,
+      rgba(237, 234, 228, 0.035) 0,
+      rgba(237, 234, 228, 0.035) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  background-size: 20px 20px;
+}
+
+.technical-cell svg {
+  color: var(--steel);
 }
 
 .stamp-tag,
@@ -92,10 +111,11 @@ body {
   align-items: center;
   justify-content: center;
   border: 1px solid currentColor;
+  color: var(--accent);
   background-image: repeating-linear-gradient(
     135deg,
-    rgba(18, 18, 18, 0.09) 0,
-    rgba(18, 18, 18, 0.09) 1px,
+    rgba(224, 152, 50, 0.18) 0,
+    rgba(224, 152, 50, 0.18) 1px,
     transparent 1px,
     transparent 5px
   );
@@ -114,25 +134,32 @@ body {
 
 .ink-stamp {
   text-shadow:
-    0.018em 0 rgba(18, 18, 18, 0.12),
-    -0.012em 0.018em rgba(18, 18, 18, 0.1);
+    0.018em 0 rgba(224, 152, 50, 0.12),
+    -0.012em 0.018em rgba(110, 118, 129, 0.22);
 }
 
 .data-plate {
-  background-color: var(--paper);
+  color: var(--accent);
+  border-color: var(--steel);
+  background-color: var(--surface);
   background-image:
-    linear-gradient(rgba(18, 18, 18, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 18, 18, 0.045) 1px, transparent 1px);
-  background-size: 10px 10px;
+    repeating-linear-gradient(
+      90deg,
+      rgba(110, 118, 129, 0.16) 0,
+      rgba(110, 118, 129, 0.16) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  background-size: 12px 12px;
 }
 
 .plate-rivet {
   position: absolute;
   width: 5px;
   height: 5px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--steel);
   border-radius: 999px;
-  background: var(--paper);
+  background: var(--surface);
 }
 
 ::selection {
@@ -177,11 +204,14 @@ select:focus-visible {
 }
 
 .interactive-card {
+  background: var(--surface);
+  border-radius: 6px;
   transition: border-color 160ms ease;
 }
 
 .interactive-card:hover {
   border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(224, 152, 50, 0.22);
 }
 
 .counter-tick {

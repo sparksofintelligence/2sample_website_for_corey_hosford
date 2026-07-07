@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { Archivo, Barlow, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const barlow = Barlow({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: "700",
-  variable: "--font-space-grotesk",
+  weight: "800",
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} bg-paper font-sans text-ink antialiased`}
+        className={`${barlow.variable} ${archivo.variable} ${ibmPlexMono.variable} bg-paper font-sans text-ink antialiased`}
       >
         {children}
       </body>
