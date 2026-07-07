@@ -24,6 +24,117 @@ body {
   color: var(--ink);
 }
 
+.catalog-sheet {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(18, 18, 18, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(18, 18, 18, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.018) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
+}
+
+.engineering-section {
+  position: relative;
+}
+
+.engineering-section::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 5px;
+  pointer-events: none;
+  content: "";
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(18, 18, 18, 0.12) 0,
+    rgba(18, 18, 18, 0.12) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+  opacity: 0.5;
+}
+
+.engineering-rule {
+  position: relative;
+}
+
+.engineering-rule::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0,
+    var(--ink) 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  opacity: 0.22;
+}
+
+.technical-panel,
+.technical-cell {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(18, 18, 18, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.03) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.stamp-tag,
+.mini-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(18, 18, 18, 0.09) 0,
+    rgba(18, 18, 18, 0.09) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+}
+
+.stamp-tag {
+  min-width: 3.25rem;
+  min-height: 2rem;
+  padding: 0.3rem 0.55rem;
+}
+
+.mini-stamp {
+  min-width: 2.25rem;
+  min-height: 1.8rem;
+}
+
+.ink-stamp {
+  text-shadow:
+    0.018em 0 rgba(18, 18, 18, 0.12),
+    -0.012em 0.018em rgba(18, 18, 18, 0.1);
+}
+
+.data-plate {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(18, 18, 18, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.045) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.plate-rivet {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
 ::selection {
   background: var(--accent);
   color: var(--paper);

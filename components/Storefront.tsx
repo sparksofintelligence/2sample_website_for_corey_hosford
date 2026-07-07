@@ -37,6 +37,7 @@ type Toast = {
   id: number;
   message: string;
 };
+type WorkshopIconName = "wrench" | "spring" | "chassis" | "crate";
 
 const useFilters: UseFilter[] = ["All", "Street", "Drift", "Track", "Accessories"];
 const availabilityFilters: AvailabilityFilter[] = [
@@ -45,6 +46,8 @@ const availabilityFilters: AvailabilityFilter[] = [
   "Built to Order",
   "Out of Stock",
 ];
+const trustIconNames: WorkshopIconName[] = ["crate", "wrench", "spring", "chassis"];
+const fitmentIconNames: WorkshopIconName[] = ["chassis", "spring", "crate"];
 
 const notifyStorageKey = (sku: string) => `preload-storefront-notify:${sku}`;
 
@@ -323,7 +326,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
   };
 
   return (
-    <main style={accentStyle} className="min-h-screen bg-paper text-ink">
+    <main style={accentStyle} className="catalog-sheet min-h-screen text-ink">
       <UtilityBar brand={brand} />
       <Header
         brand={brand}
@@ -332,13 +335,13 @@ export default function Storefront({ brand, products }: StorefrontProps) {
         onCartOpen={() => setCartOpen(true)}
       />
 
-      <section className="border-b border-rule">
+      <section className="engineering-section border-b border-rule">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:px-8 lg:py-20">
           <div className="flex flex-col justify-center">
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.24em] text-[var(--accent)]">
               {brand.categoryLabel}
             </p>
-            <h1 className="max-w-4xl font-display text-5xl font-bold uppercase leading-[0.95] tracking-normal sm:text-7xl lg:text-8xl">
+            <h1 className="ink-stamp max-w-4xl font-display text-5xl font-bold uppercase leading-[0.95] tracking-normal sm:text-7xl lg:text-8xl">
               {headlineFromTagline(brand.tagline)}
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-muted">
@@ -359,8 +362,9 @@ export default function Storefront({ brand, products }: StorefrontProps) {
               </a>
             </div>
           </div>
-          <div className="border border-rule bg-paper px-3 py-5 text-ink sm:px-6">
+          <div className="technical-panel border border-rule bg-paper px-3 py-5 text-ink sm:px-6">
             <Diagram diagramKey={brand.diagramKey} />
+            <SpecPlate diagramKey={brand.diagramKey} />
           </div>
         </div>
         <div className="border-y border-rule">
@@ -370,20 +374,21 @@ export default function Storefront({ brand, products }: StorefrontProps) {
         </div>
       </section>
 
-      <section aria-label="Trust points" className="border-b border-rule">
+      <section aria-label="Trust points" className="engineering-section border-b border-rule">
         <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {brand.trustPoints.map((point) => (
+          {brand.trustPoints.map((point, index) => (
             <div
               key={point}
-              className="border-x border-rule px-4 py-5 font-mono text-xs uppercase tracking-[0.18em]"
+              className="technical-cell flex min-h-28 flex-col justify-between border-x border-rule px-4 py-5 font-mono text-xs uppercase tracking-[0.18em]"
             >
+              <WorkshopIcon name={trustIconNames[index]} className="mb-5 h-8 w-8" />
               {point}
             </div>
           ))}
         </div>
       </section>
 
-      <section id="catalog" className="border-b border-rule">
+      <section id="catalog" className="engineering-section border-b border-rule">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <SectionHeading number="01" label="Catalog" detail={brand.categoryLabel} />
           <div className="mt-8 border-y border-rule py-5">
@@ -527,15 +532,18 @@ export default function Storefront({ brand, products }: StorefrontProps) {
         </div>
       </section>
 
-      <section id="fitment" className="border-b border-rule">
+      <section id="fitment" className="engineering-section border-b border-rule">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <SectionHeading number="02" label="Fitment" detail="Specified before dispatch" />
           <div className="mt-8 grid gap-px bg-rule md:grid-cols-3">
             {brand.fitmentSteps.map((step, index) => (
-              <div key={step} className="bg-paper p-6">
-                <p className="font-mono text-xs text-[var(--accent)]">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
+              <div key={step} className="technical-cell bg-paper p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <p className="mini-stamp font-mono text-xs text-[var(--accent)]">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <WorkshopIcon name={fitmentIconNames[index]} className="h-9 w-9" />
+                </div>
                 <h3 className="mt-8 font-display text-2xl uppercase leading-tight">
                   {step}
                 </h3>
@@ -545,7 +553,7 @@ export default function Storefront({ brand, products }: StorefrontProps) {
         </div>
       </section>
 
-      <section id="support" className="border-b border-rule">
+      <section id="support" className="engineering-section border-b border-rule">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <SectionHeading number="03" label="Support" detail="Questions before checkout" />
           <div className="mt-8 border-y border-rule">
@@ -706,9 +714,11 @@ function SectionHeading({
   detail: string;
 }) {
   return (
-    <div className="flex flex-col gap-3 border-b border-rule pb-5 sm:flex-row sm:items-end sm:justify-between">
+    <div className="engineering-rule flex flex-col gap-3 border-b border-rule pb-5 sm:flex-row sm:items-end sm:justify-between">
       <h2 className="font-display text-4xl uppercase tracking-normal sm:text-5xl">
-        <span className="font-mono text-sm text-[var(--accent)]">{number}</span>
+        <span className="stamp-tag font-mono text-sm text-[var(--accent)]">
+          {number}
+        </span>
         <span className="mx-3 font-mono text-sm text-muted">/</span>
         {label}
       </h2>
@@ -716,6 +726,83 @@ function SectionHeading({
         {detail}
       </p>
     </div>
+  );
+}
+
+function SpecPlate({ diagramKey }: { diagramKey: BrandConfig["diagramKey"] }) {
+  const plateText =
+    diagramKey === "brake"
+      ? "PL-BR SERIES / SLOTTED ROTOR / 280-355MM"
+      : "PL-CS SERIES / MONOTUBE / 6K-14K";
+
+  return (
+    <div className="data-plate relative mt-4 border border-ink px-4 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink">
+      <span className="plate-rivet left-2 top-2" aria-hidden="true" />
+      <span className="plate-rivet right-2 top-2" aria-hidden="true" />
+      <span className="plate-rivet bottom-2 left-2" aria-hidden="true" />
+      <span className="plate-rivet bottom-2 right-2" aria-hidden="true" />
+      {plateText}
+    </div>
+  );
+}
+
+function WorkshopIcon({
+  name,
+  className,
+}: {
+  name: WorkshopIconName;
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.6"
+    >
+      {name === "wrench" ? (
+        <>
+          <path d="M31 6 L38 13 L33 18 L30 15 L16 29 L19 32 L14 37 L7 30 L12 25 L15 28 L29 14 L26 11 Z" />
+          <path d="M11 35 L7 39" />
+          <path d="M35 9 L39 5" />
+        </>
+      ) : null}
+      {name === "spring" ? (
+        <>
+          <path d="M19 7 H29" />
+          <path d="M24 7 V41" />
+          <path d="M14 14 C18 9 30 9 34 14 C30 19 18 19 14 14 Z" />
+          <path d="M14 21 C18 16 30 16 34 21 C30 26 18 26 14 21 Z" />
+          <path d="M14 28 C18 23 30 23 34 28 C30 33 18 33 14 28 Z" />
+          <path d="M14 35 C18 30 30 30 34 35 C30 40 18 40 14 35 Z" />
+        </>
+      ) : null}
+      {name === "chassis" ? (
+        <>
+          <path d="M8 29 H12 L16 19 H32 L36 29 H40" />
+          <path d="M14 29 H34" />
+          <path d="M18 19 L21 13 H27 L30 19" />
+          <circle cx="16" cy="33" r="4" />
+          <circle cx="32" cy="33" r="4" />
+          <path d="M21 23 H27" />
+        </>
+      ) : null}
+      {name === "crate" ? (
+        <>
+          <path d="M10 16 H38 V38 H10 Z" />
+          <path d="M10 16 L16 10 H44 L38 16" />
+          <path d="M38 16 L44 10 V32 L38 38" />
+          <path d="M14 20 L34 36" />
+          <path d="M34 20 L14 36" />
+          <path d="M18 10 V16" />
+          <path d="M30 10 V16" />
+        </>
+      ) : null}
+    </svg>
   );
 }
 
@@ -750,7 +837,7 @@ function ProductGrid({
             type="button"
             data-testid={`product-diagram-${product.sku}`}
             onClick={() => onSelect(product)}
-            className="border-b border-rule p-4 text-left transition-colors hover:text-[var(--accent)]"
+            className="technical-panel border-b border-rule p-4 text-left transition-colors hover:text-[var(--accent)]"
           >
             <Diagram diagramKey={brand.diagramKey} compact />
           </button>
@@ -960,8 +1047,9 @@ function ProductModal({
         data-testid="product-modal"
         className="mx-auto grid max-h-[calc(100vh-40px)] max-w-5xl overflow-y-auto border border-ink bg-paper lg:grid-cols-[0.9fr_1.1fr]"
       >
-        <div className="border-b border-rule p-5 lg:border-b-0 lg:border-r">
+        <div className="technical-panel border-b border-rule p-5 lg:border-b-0 lg:border-r">
           <Diagram diagramKey={brand.diagramKey} />
+          <SpecPlate diagramKey={brand.diagramKey} />
         </div>
         <div className="p-5 sm:p-7">
           <div className="flex items-start justify-between gap-4">
