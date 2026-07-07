@@ -1,0 +1,35 @@
+{
+  "name": "preload-suspension-supply-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "optionalDependencies": {
+    "@next/swc-darwin-arm64": "16.2.10",
+    "@next/swc-darwin-x64": "16.2.10",
+    "@next/swc-linux-arm64-gnu": "16.2.10",
+    "@next/swc-linux-arm64-musl": "16.2.10",
+    "@next/swc-linux-x64-gnu": "16.2.10",
+    "@next/swc-linux-x64-musl": "16.2.10",
+    "@next/swc-win32-arm64-msvc": "16.2.10",
+    "@next/swc-win32-x64-msvc": "16.2.10"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  }
+}
